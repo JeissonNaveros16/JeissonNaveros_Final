@@ -28,8 +28,11 @@ d = np.loadtxt("valores.txt")
 x = met_hast(d,10**5)
 
 plt.figure(figsize=(15,8))
-__ = plt.hist(x, bins=100, density=True)
-plt.title("Sigma")
+f, y, t = plt.hist(x, bins=100, density=True)
+y1 = (y[:-1] + y[1:])/2
+media = np.mean(f*y1)
+desviacion = np.std(f*y1)
+plt.title("Media de " + str(media) + " y desviación estandar de " + str(desviacion))
 plt.ylabel("$prob(\sigma | x_{k})$")
 plt.xlabel("$\sigma$")
 plt.savefig("sigma.png")
